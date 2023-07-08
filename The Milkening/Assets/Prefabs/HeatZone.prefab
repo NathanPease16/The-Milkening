@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3062390886387484928}
   - component: {fileID: 1969270560656381471}
   - component: {fileID: 8003336294012816313}
+  - component: {fileID: 5402999734249270928}
   m_Layer: 0
   m_Name: HeatZone
   m_TagString: Untagged
@@ -27,11 +28,11 @@ Transform:
   m_GameObject: {fileID: 5767286900940229683}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 3, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1969270560656381471
 BoxCollider:
@@ -52,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.4482473, z: 1}
+  m_Center: {x: 0, y: 0.22412321, z: 0}
 --- !u!114 &8003336294012816313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,4 +67,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad5aecedbf9f2f44396c89eb5270251b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  temperature: 30
+  temperature: 0
+--- !u!114 &5402999734249270928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767286900940229683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 0
+  priority: 5
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 548414ab151a6d04b9af077b3001579b, type: 2}
