@@ -1904,6 +1904,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrawBerryEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1984796729306839485, guid: 9a4a8452b6ef1594b8fabb4e105ae4e5,
+        type: 3}
+      propertyPath: m_Acceleration
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7683722308009406171, guid: 9a4a8452b6ef1594b8fabb4e105ae4e5,
         type: 3}
       propertyPath: m_RootOrder

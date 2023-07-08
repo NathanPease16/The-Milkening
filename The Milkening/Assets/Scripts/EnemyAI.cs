@@ -71,8 +71,11 @@ public class EnemyAI : MonoBehaviour
     {
         //Make sure enemy doesn't move    
         if (ReachedDestinationOrGaveUp())
+        {
             agent.SetDestination(transform.position);
-        agent.speed = 6f;
+            agent.speed = 6f;
+        }
+            
         if (!alreadyAttacked)
         {
             LungeAttack();
@@ -86,7 +89,7 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 dir = (player.position - transform.position).normalized;
         agent.SetDestination(player.position + dir * 20f);
-        agent.speed = 100f;
+        agent.speed = 50f;
     }
 
     private void ResetAttack()
@@ -94,7 +97,7 @@ public class EnemyAI : MonoBehaviour
         alreadyAttacked = false;
         animator.ResetTrigger("Attack");
         animator.SetTrigger("Walk");
-        agent.speed = agent.speed / 5;
+        agent.speed = 6f;
     }
     public void TakeDamage(int damage)
     {

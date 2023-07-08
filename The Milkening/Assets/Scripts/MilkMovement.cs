@@ -14,10 +14,16 @@ public class MilkMovement : MonoBehaviour
     private float currentEscapeTime;
     private bool isLunging;
 
+    private float nextActionTime = 0.0f;
+    public float period = 3f;
+
+
     [Header("References")]
     private Rigidbody rb;
     private Transform mainCam;
     private Transform groundCheck;
+
+
 
     private void Awake()
     {
@@ -42,8 +48,12 @@ public class MilkMovement : MonoBehaviour
 
         rb.angularVelocity = mainCam.rotation * new Vector3(vertical * speed, 0, -horizontal * speed);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded &&  Time.time > nextActionTime )
         {
+
+            nextActionTime += period;
+
+
             Vector3 dir = mainCam.forward;
             dir.y += lungeHeightBias;
             rb.AddForce(dir * lungeForce);
