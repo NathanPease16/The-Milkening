@@ -70,9 +70,8 @@ public class EnemyAI : MonoBehaviour
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move    
-            
-        
-        transform.LookAt(player);
+        if (ReachedDestinationOrGaveUp())
+            agent.SetDestination(transform.position);
         agent.speed = 6f;
         if (!alreadyAttacked)
         {
@@ -81,26 +80,13 @@ public class EnemyAI : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        else
-        {
-            if (!agent.pathPending)
-            {
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
-                    {
-                        agent.SetDestination(transform.position);
-                    }
-                }
-            }
-            
-        }
+
     }
     private void LungeAttack()
     {
-        Vector3 dir = (player.position  - transform.position).normalized;
-        agent.SetDestination(player.position + dir * 10f);
-        agent.speed = 20f;
+        Vector3 dir = (player.position - transform.position).normalized;
+        agent.SetDestination(player.position + dir * 20f);
+        agent.speed = 50f;
     }
 
     private void ResetAttack()
@@ -126,5 +112,22 @@ public class EnemyAI : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
+
+    public bool ReachedDestinationOrGaveUp()
+    {
+
+        if (!agent.pathPending)
+        {
+            if (agent.remainingDistance <= agent.stoppingDistance)
+            {
+                if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }
