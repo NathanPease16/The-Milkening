@@ -47,6 +47,7 @@ public class MilkLevel : MonoBehaviour
         death.SetActive(false);
         animator = GetComponent<Animator>();
         movement = transform.GetChild(0).GetComponent<MilkMovement>();
+        animator.speed = 1;
 
     }
 
@@ -54,8 +55,6 @@ public class MilkLevel : MonoBehaviour
     {
         damageTime += Time.deltaTime;
         SpoilMilk();
-        if (currentMilk <= 0 && !Died)    
-            Death();
     }
 
     public void UpdateMilkContents(float amount)
@@ -66,6 +65,9 @@ public class MilkLevel : MonoBehaviour
             if (amount < 0)
                 damageTime = 0;
         }
+
+        if (currentMilk <= 0 && !Died)    
+            Death();
     }
 
     private void SpoilMilk()
@@ -94,6 +96,7 @@ public class MilkLevel : MonoBehaviour
         //Perform Death
         SoundManager.instance.PlaySound(_clip);
         death.SetActive(true);
+        animator.speed = 1;
         animator.SetTrigger("Death");
         movement.enabled = false;
 
