@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MilkLevel : MonoBehaviour
 {
+
+    [Header ("Sounds")]
+    public AudioClip _clip;
+
     [Header("Milk Level")]
     [SerializeField] private float maxMilk;
     [SerializeField] private float currentMilk;
@@ -29,15 +33,29 @@ public class MilkLevel : MonoBehaviour
     public float CurrentSpoilage { get { return currentSpoilage; } }
     public float CurrentTemperature { get { return currentTemperature; } set { currentTemperature = value; } }
 
+
+    GameObject death;
+
+    Animator animator;
+    MilkMovement movement;
+    bool Died;
     private void Awake()
     {
+        
         currentMilk = maxMilk;
+        death = GameObject.FindGameObjectWithTag("Death");
+        death.SetActive(false);
+        animator = GetComponent<Animator>();
+        movement = transform.GetChild(0).GetComponent<MilkMovement>();
+
     }
 
     private void Update()
     {
         damageTime += Time.deltaTime;
         SpoilMilk();
+        if (currentMilk <= 0 && !Died)    
+            Death();
     }
 
     public void UpdateMilkContents(float amount)
@@ -68,5 +86,16 @@ public class MilkLevel : MonoBehaviour
 
         if (currentSpoilage >= maxSpoilage)
             UpdateMilkContents(-spoilDamage * Time.deltaTime);
+    }
+    
+    public void Death()
+    {
+        Died = true;
+        //Perform Death
+        SoundManager.instance.PlaySound(_clip);
+        death.SetActive(true);
+        animator.SetTrigger("Death");
+        movement.enabled = false;
+
     }
 }

@@ -98,12 +98,8 @@ public class EnemyAI : MonoBehaviour
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         if (!walkPointSet) SearchWalkPoint();
-
         if (walkPointSet)
             agent.SetDestination(walkPoint);
-
-            
-            
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 

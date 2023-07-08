@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MilkHealth
   - Enemy
+  - Death
   layers:
   - Default
   - TransparentFX
