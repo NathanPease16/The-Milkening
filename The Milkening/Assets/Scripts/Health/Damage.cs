@@ -2,8 +2,13 @@ using UnityEngine;
 
 public class Damage : MonoBehaviour
 {
+    [Header ("Sounds")]
+    public AudioClip _clip;
+
     [Header("Attributes")]
     [SerializeField] private float damage;
+
+    
 
     [Header("References")]
     private MilkLevel milk;
@@ -16,6 +21,10 @@ public class Damage : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
+            SoundManager.instance.PlaySound(_clip);
             milk.UpdateMilkContents(-damage);
+        }
+            
     }
 }

@@ -27,14 +27,27 @@ public class MilkLevel : MonoBehaviour
     public float CurrentSpoilage { get { return currentSpoilage; } }
     public float CurrentTemperature { get { return currentTemperature; } set { currentTemperature = value; } }
 
+
+    GameObject death;
+
+    Animator animator;
+    MilkMovement movement;
     private void Awake()
     {
+        
         currentMilk = maxMilk;
+        death = GameObject.FindGameObjectWithTag("Death");
+        death.SetActive(false);
+        animator = GetComponent<Animator>();
+        movement = transform.GetChild(0).GetComponent<MilkMovement>();
+
     }
 
     private void Update()
     {
         SpoilMilk();
+        if (currentMilk <= 0)    
+            Death();
     }
 
     public void UpdateMilkContents(float amount)
@@ -60,5 +73,14 @@ public class MilkLevel : MonoBehaviour
 
         if (currentSpoilage >= maxSpoilage)
             UpdateMilkContents(-spoilDamage * Time.deltaTime);
+    }
+    
+    public void Death()
+    {
+        //Perform Death
+        death.SetActive(true);
+        animator.SetTrigger("Death");
+        movement.enabled = false;
+
     }
 }

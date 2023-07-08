@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5061848941288401253}
   - component: {fileID: 1701621089797798534}
   - component: {fileID: 8263256120704236984}
+  - component: {fileID: 7765682016436346390}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -27,14 +28,14 @@ Transform:
   m_GameObject: {fileID: 1328965616673473497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.178, z: -3.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.19999999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3803842630526635565}
   - {fileID: 6091855049938436164}
   - {fileID: 1898001403822952183}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1701621089797798534
 MonoBehaviour:
@@ -74,6 +75,28 @@ MonoBehaviour:
   maxSpoilRate: 3
   minSpoilTemp: 40
   maxSpoilTemp: 100
+--- !u!95 &7765682016436346390
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1328965616673473497}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df68c7a33d62566418dcf03eb29f17da, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3996164918120433980
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +227,7 @@ MonoBehaviour:
   groundCheckMask:
     serializedVersion: 2
     m_Bits: 55
-  period: 1
+  period: 2
 --- !u!1 &4659189430518869340
 GameObject:
   m_ObjectHideFlags: 0

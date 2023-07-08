@@ -3,6 +3,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class MilkMovement : MonoBehaviour
 {
+    [Header ("Sounds")]
+    public AudioClip _clip;
+
     [Header("Attributes")]
     [SerializeField] private float speed;
     [SerializeField] private float lungeAngularVelocity;
@@ -41,15 +44,22 @@ public class MilkMovement : MonoBehaviour
 
     private void MoveMilk()
     {
+        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
 
         bool isGrounded = IsGrounded();
 
         rb.angularVelocity = mainCam.rotation * new Vector3(vertical * speed, 0, -horizontal * speed);
-
+        if (horizontal > 0 || vertical > 0)
+        {
+            SoundManager.instance.PlaySound(_clip);
+        }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded &&  Time.time > nextActionTime )
         {
+            
+            SoundManager.instance.PlaySound(_clip);
 
             nextActionTime += period;
 

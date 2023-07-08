@@ -9,6 +9,9 @@ public class HeatZone : MonoBehaviour
     [Header("References")]
     private MilkLevel milk;
 
+    [Header ("Sounds")]
+    public AudioClip _clip;
+
     Volume v;
     Bloom b;
 
@@ -25,6 +28,7 @@ public class HeatZone : MonoBehaviour
             {
                 milk.CurrentTemperature = temperature;
                 b.intensity.value = Mathf.Clamp(Mathf.FloorToInt(20f * (temperature/100)), 0, 20);
+                SoundManager.instance.PlaySound(_clip);
             }
 
     }
