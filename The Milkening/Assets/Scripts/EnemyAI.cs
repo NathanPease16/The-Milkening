@@ -23,12 +23,20 @@ public class EnemyAI : MonoBehaviour
 
     Animator animator;
     private Transform groundCheck;
-    private bool isLunging;
+    public bool isLunging;
+    public Vector3 lungeDir;
     private Rigidbody rb;
     private float escapeTime = .1f;
     private float currentEscapeTime;
     private float lungeCoolDown = 1.5f;
     private float currentCoolDownTime;
+    public float damage;
+    public float damageCoolDown;
+    public float damageTime;
+
+    public GameObject milkSplash;
+    public GameObject milkPuddle;
+    public LayerMask floor;
 
     private void Awake()
     {
@@ -38,12 +46,26 @@ public class EnemyAI : MonoBehaviour
         groundCheck = transform.Find("Ground Check");
         rb = GetComponent<Rigidbody>();
         currentCoolDownTime = lungeCoolDown;
+        damageTime = damageCoolDown;
+    }
+
+    public void Damage(float damage)
+    {
+        if (damageTime >= damageCoolDown)
+        {
+            health -= damage;
+            damageTime = 0;
+        }
+
+        if (health <= 0)
+            Die();
     }
 
     private void Update()
     {
         agent.enabled = true;
         currentCoolDownTime += Time.deltaTime;
+        damageTime += Time.deltaTime;
 
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -54,6 +76,19 @@ public class EnemyAI : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange && isGrounded && !isLunging) Patroling();
         if (playerInSightRange && !playerInAttackRange && isGrounded && !isLunging) ChasePlayer();
         if ((playerInAttackRange && playerInSightRange) || isLunging) AttackPlayer();
+    }
+
+    private void Die()
+    {
+        Instantiate(milkSplash, transform.position, Quaternion.identity);
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, floor);
+
+        Vector3 point = hit.point;
+        point.y += .01f;
+
+        Instantiate(milkPuddle, point, Quaternion.Euler(90, 0, 0));
+
+        Destroy(gameObject);
     }
 
     private void Patroling()
@@ -93,7 +128,7 @@ public class EnemyAI : MonoBehaviour
         bool isGrounded = IsGrounded();
         Vector3 dir = (player.position - transform.position).normalized;
         agent.enabled = false;
-            animator.enabled = false;
+        animator.enabled = false;
 
         if (isGrounded && currentCoolDownTime >= lungeCoolDown)
         {
@@ -103,6 +138,8 @@ public class EnemyAI : MonoBehaviour
             isLunging = true;
             currentEscapeTime = 0;
             currentCoolDownTime = 0;
+
+            lungeDir = dir;
         }
 
         if (isLunging)
@@ -112,23 +149,6 @@ public class EnemyAI : MonoBehaviour
                 isLunging = false;
             currentEscapeTime += Time.deltaTime;
         }
-        /*
-        //Make sure enemy doesn't move    
-        if (ReachedDestinationOrGaveUp())
-        {
-            agent.SetDestination(transform.position);
-            agent.speed = 6f;
-        }
-            
-        if (!alreadyAttacked)
-        {
-            LungeAttack();
-            animator.SetTrigger("Attack");
-            alreadyAttacked = true;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-        */
-
     }
     private void LungeAttack()
     {

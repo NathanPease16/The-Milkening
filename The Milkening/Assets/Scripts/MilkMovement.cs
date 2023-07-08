@@ -16,7 +16,7 @@ public class MilkMovement : MonoBehaviour
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private LayerMask groundCheckMask;
     private float currentEscapeTime;
-    private bool isLunging;
+    public bool isLunging;
 
     private float nextActionTime = 0.0f;
     public float period = 7f;
@@ -29,6 +29,7 @@ public class MilkMovement : MonoBehaviour
     private Rigidbody rb;
     private Transform mainCam;
     private Transform groundCheck;
+    public Vector3 lungeDir;
 
 
 
@@ -72,6 +73,8 @@ public class MilkMovement : MonoBehaviour
             rb.AddForce(dir * lungeForce);
             isLunging = true;
             currentEscapeTime = 0;
+
+            lungeDir = dir;
         }
 
         if (isLunging)

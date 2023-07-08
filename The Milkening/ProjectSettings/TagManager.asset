@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MilkHealth
+  - Enemy
   - Death
   layers:
   - Default
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - Wall
   - Ignore Clipping
-  - 
-  - 
+  - NoCollide
+  - Enemy
   - 
   - 
   - 

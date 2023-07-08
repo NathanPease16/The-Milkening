@@ -10,7 +10,9 @@ public class MilkLevel : MonoBehaviour
 
     [Header("Milk Level")]
     [SerializeField] private float maxMilk;
-    private float currentMilk;
+    [SerializeField] private float currentMilk;
+    [SerializeField] private float damageCoolDown;
+    private float damageTime;
 
     [Header("Spoilage")]
     [SerializeField] private float maxSpoilage;
@@ -50,6 +52,7 @@ public class MilkLevel : MonoBehaviour
 
     private void Update()
     {
+        damageTime += Time.deltaTime;
         SpoilMilk();
         if (currentMilk <= 0 && !Died)    
             Death();
@@ -57,7 +60,12 @@ public class MilkLevel : MonoBehaviour
 
     public void UpdateMilkContents(float amount)
     {
-        currentMilk = Mathf.Clamp(currentMilk + amount, 0, maxMilk);
+        if ((amount < 0 && damageTime >= damageCoolDown) || amount >= 0)
+        {
+            currentMilk = Mathf.Clamp(currentMilk + amount, 0, maxMilk);
+            if (amount < 0)
+                damageTime = 0;
+        }
     }
 
     private void SpoilMilk()
