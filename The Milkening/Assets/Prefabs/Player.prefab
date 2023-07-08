@@ -67,6 +67,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMilk: 100
+  currentMilk: 0
+  damageCoolDown: 0.5
   maxSpoilage: 100
   freshenRate: -3
   spoilDamage: 3
@@ -86,6 +88,7 @@ GameObject:
   - component: {fileID: 1201316351296413270}
   - component: {fileID: 7378945844836070975}
   - component: {fileID: 8991164026220393968}
+  - component: {fileID: 3249178508569775788}
   - component: {fileID: 2525061453084779258}
   m_Layer: 3
   m_Name: milk
@@ -183,6 +186,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &3249178508569775788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3996164918120433980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39d3b6bc14b2ef4c9fc9be6b6a6098b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
 --- !u!114 &2525061453084779258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +220,9 @@ MonoBehaviour:
   groundCheckMask:
     serializedVersion: 2
     m_Bits: 55
+  isLunging: 0
   period: 1
+  lungeDir: {x: 0, y: 0, z: 0}
 --- !u!1 &4659189430518869340
 GameObject:
   m_ObjectHideFlags: 0
