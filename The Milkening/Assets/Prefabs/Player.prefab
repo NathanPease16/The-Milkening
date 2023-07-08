@@ -34,7 +34,7 @@ Transform:
   - {fileID: 6091855049938436164}
   - {fileID: 1898001403822952183}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1701621089797798534
 MonoBehaviour:
@@ -198,7 +198,7 @@ MonoBehaviour:
   lungeForce: 400
   lungeHeightBias: 0.5
   lungeEscapeTime: 0.1
-  groundCheckRadius: 0.1
+  groundCheckRadius: 0.15
   groundCheckMask:
     serializedVersion: 2
     m_Bits: 55
