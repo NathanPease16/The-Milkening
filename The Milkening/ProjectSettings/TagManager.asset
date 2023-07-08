@@ -7,6 +7,7 @@ TagManager:
   - MilkHealth
   - Enemy
   - Death
+  - Checkpoints
   layers:
   - Default
   - TransparentFX

@@ -60,7 +60,6 @@ public class MilkMovement : MonoBehaviour
         if (Time.time > nextSoundTime && (horizontal > 0 || vertical > 0))
         {
             SoundManager.instance.PlaySound(_MilkSlosh);
-            Debug.Log("asd");
             nextSoundTime += soundperiod;
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded &&  Time.time > nextActionTime )
