@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2600067830531053205}
-  - component: {fileID: 7980042254028892029}
   m_Layer: 0
   m_Name: KnifeToStab
   m_TagString: Untagged
@@ -32,20 +31,8 @@ Transform:
   - {fileID: 2740692371389176539}
   - {fileID: 6997964632079208206}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7980042254028892029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6261754634512068912}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b1ebc263d5a724aa924e3fb2196763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8032930102231734402
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,6 +163,7 @@ GameObject:
   - component: {fileID: 487894889577764721}
   - component: {fileID: 6707802747631787511}
   - component: {fileID: 7890928021819524425}
+  - component: {fileID: 4742987482026450653}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -264,9 +252,22 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 29.642736, y: 7.6266117, z: 0.59999985}
   m_Center: {x: 13.4895115, y: -2.6871078, z: 6.2051906e-15}
+--- !u!114 &4742987482026450653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093486057563139122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cb0aa0cc5da824490d01f7f271e54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10

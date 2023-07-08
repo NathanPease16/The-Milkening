@@ -4,6 +4,7 @@ public class CameraMovement : MonoBehaviour
 {
     [Header("Camera Position")]
     [SerializeField] private Vector3 offset;
+    [SerializeField] private float distFromClip;
 
     [Header("Camera Rotation")]
     [SerializeField] private float rotateSpeed;
@@ -40,18 +41,25 @@ public class CameraMovement : MonoBehaviour
         float mouseX = Input.GetAxisRaw("Mouse X") * rotateSpeed * Time.deltaTime;
         float mouseY = Input.GetAxisRaw("Mouse Y") * rotateSpeed * Time.deltaTime;
 
-        pivot.Rotate(new Vector3(-mouseY, mouseX, 0));
-        pivot.rotation = Quaternion.Euler(pivot.localEulerAngles.x, pivot.localEulerAngles.y, 0);
+        Vector3 rotationAngles = new Vector3(-mouseY, mouseX, 0);
+        Vector3 newRotation = pivot.rotation.eulerAngles + rotationAngles;
+
+        if (newRotation.x > 180f)
+            newRotation.x -= 360f;
+
+        newRotation.x = Mathf.Clamp(newRotation.x, -90f, 90f);
+
+        pivot.rotation = Quaternion.Euler(newRotation);
     }
 
     private void CameraSanityCheck()
     {
         Vector3 direction = (mainCam.position - transform.position).normalized;
 
-        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, originalDistance, sanityLayerMask))
+        if (Physics.Raycast(transform.position, direction, out RaycastHit hit, originalDistance, sanityLayerMask, QueryTriggerInteraction.Ignore))
         {
             Debug.DrawRay(transform.position, direction * originalDistance, Color.red);
-            mainCam.position = hit.point;
+            mainCam.position = hit.point - direction * distFromClip;
         }
         else
         {

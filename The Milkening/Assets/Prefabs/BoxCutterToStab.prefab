@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1546082125117417305}
   - component: {fileID: 8349551962200749412}
   - component: {fileID: 5224625525997045390}
-  - component: {fileID: 8555799212645014913}
+  - component: {fileID: 1818521548803501030}
   m_Layer: 0
   m_Name: BoxCutterToStab
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1546082125117417305
 MeshFilter:
@@ -101,13 +101,13 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.276444, y: 2.0290852, z: 0.536198}
   m_Center: {x: 5.0451517, y: 0.092261165, z: -0.08262528}
---- !u!114 &8555799212645014913
+--- !u!114 &1818521548803501030
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,6 +116,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1294010900533244993}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b1ebc263d5a724aa924e3fb2196763, type: 3}
+  m_Script: {fileID: 11500000, guid: 02cb0aa0cc5da824490d01f7f271e54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 10

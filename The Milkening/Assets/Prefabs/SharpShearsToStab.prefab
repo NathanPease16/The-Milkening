@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2850155962835273461}
-  - component: {fileID: 5458143516759424060}
   - component: {fileID: 3007308635750264058}
+  - component: {fileID: 7008607138941659469}
   m_Layer: 0
   m_Name: SharpShearsToStab
   m_TagString: Untagged
@@ -35,20 +35,8 @@ Transform:
   - {fileID: 5547994097677077295}
   - {fileID: 4711229074440129123}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5458143516759424060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 615453376012265907}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b1ebc263d5a724aa924e3fb2196763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!65 &3007308635750264058
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64,12 +52,25 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.1150208, y: 0.28601575, z: 0.3762207}
   m_Center: {x: 6.2258453, y: -0.04462403, z: 1.8385315}
+--- !u!114 &7008607138941659469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615453376012265907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cb0aa0cc5da824490d01f7f271e54d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
 --- !u!1 &5800802696798444262
 GameObject:
   m_ObjectHideFlags: 0
