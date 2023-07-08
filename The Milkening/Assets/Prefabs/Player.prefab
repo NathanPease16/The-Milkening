@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4b140193829cae4c8a2c05ee34581ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _MilkSlosh: {fileID: 0}
+  _MilkLunge: {fileID: 0}
   speed: 10
   lungeAngularVelocity: 7
   lungeForce: 400
