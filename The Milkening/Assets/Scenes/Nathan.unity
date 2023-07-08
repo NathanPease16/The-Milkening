@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 251823476}
   - component: {fileID: 251823475}
   - component: {fileID: 251823474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +815,7 @@ GameObject:
   - component: {fileID: 449337612}
   - component: {fileID: 449337611}
   - component: {fileID: 449337610}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -920,7 +920,7 @@ GameObject:
   - component: {fileID: 684237498}
   - component: {fileID: 684237497}
   - component: {fileID: 684237496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1118,7 +1118,7 @@ GameObject:
   - component: {fileID: 807272596}
   - component: {fileID: 807272595}
   - component: {fileID: 807272594}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1444,7 +1444,7 @@ GameObject:
   - component: {fileID: 1162859962}
   - component: {fileID: 1162859961}
   - component: {fileID: 1162859960}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1585,7 +1585,7 @@ GameObject:
   - component: {fileID: 1330856690}
   - component: {fileID: 1330856689}
   - component: {fileID: 1330856688}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1942,16 +1942,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649349673642314802, guid: 459e11b3c8b9b9448b5a202489a4efcc,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 20.000122
-      objectReference: {fileID: 0}
-    - target: {fileID: 2649349673642314802, guid: 459e11b3c8b9b9448b5a202489a4efcc,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -20.000061
       objectReference: {fileID: 0}
     - target: {fileID: 8154251712987293844, guid: 459e11b3c8b9b9448b5a202489a4efcc,
         type: 3}
