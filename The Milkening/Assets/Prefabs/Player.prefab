@@ -35,7 +35,7 @@ Transform:
   - {fileID: 6091855049938436164}
   - {fileID: 1898001403822952183}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1701621089797798534
 MonoBehaviour:
@@ -71,6 +71,7 @@ MonoBehaviour:
   maxMilk: 100
   currentMilk: 0
   damageCoolDown: 0.5
+  timeToRestart: 4
   maxSpoilage: 100
   freshenRate: -3
   spoilDamage: 3
@@ -222,6 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39d3b6bc14b2ef4c9fc9be6b6a6098b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurt: {fileID: 6078522026879731188, guid: bb176d6c03ae7a248a9bb4636b4a6a96, type: 3}
   damage: 4
 --- !u!114 &2525061453084779258
 MonoBehaviour:

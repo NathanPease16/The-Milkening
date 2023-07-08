@@ -3,6 +3,7 @@ using UnityEngine;
 public class MilkAttack : MonoBehaviour
 {
     [Header("References")]
+    public GameObject hurt;
     private MilkMovement movement;
     private MilkLevel milkLevel;
     public float damage;
@@ -20,8 +21,11 @@ public class MilkAttack : MonoBehaviour
             EnemyAI ai = other.gameObject.GetComponent<EnemyAI>();
 
             if (!ai.isLunging && movement.isLunging)
+            {
                 ai.Damage(damage);
-            else if (!movement.isLunging && ai.isLunging)
+                Instantiate(hurt, ai.transform.position, Quaternion.identity);
+            }
+            else if (!movement.isLunging)
                 milkLevel.UpdateMilkContents(-ai.damage);
             else if (movement.isLunging && ai.isLunging)
             {
@@ -34,16 +38,19 @@ public class MilkAttack : MonoBehaviour
                 if (enemyDot < playerDot)
                 {
                     ai.Damage(damage);
+                    Instantiate(hurt, ai.transform.position, Quaternion.identity);
                     milkLevel.UpdateMilkContents(-ai.damage * .3f);
                 }
                 else if (playerDot < enemyDot)
                 {
                     ai.Damage(damage * .3f);
+                    Instantiate(hurt, ai.transform.position, Quaternion.identity);
                     milkLevel.UpdateMilkContents(-ai.damage);
                 }
                 else
                 {
                     ai.Damage(damage);
+                    Instantiate(hurt, ai.transform.position, Quaternion.identity);
                     milkLevel.UpdateMilkContents(-ai.damage);
                 }
 

@@ -89,6 +89,16 @@ public class MilkMovement : MonoBehaviour
         transform.localPosition = Vector3.zero;
     }
 
+    public void Launch()
+    {
+        Vector3 dir = -mainCam.forward;
+        dir.y = Mathf.Abs(dir.y);
+        dir.y += lungeHeightBias;
+
+        rb.velocity = dir;
+        rb.angularVelocity = dir * lungeAngularVelocity;
+    }
+
     private bool IsGrounded()
     {
         return Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundCheckMask);
