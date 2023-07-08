@@ -19,8 +19,11 @@ public class EnemyAI : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    Animator animator;
+
     private void Awake()
     {
+        animator = transform.GetChild(0).GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
@@ -43,6 +46,9 @@ public class EnemyAI : MonoBehaviour
         if (walkPointSet)
             agent.SetDestination(walkPoint);
 
+            
+            
+
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
         //Walkpoint reached
@@ -63,21 +69,46 @@ public class EnemyAI : MonoBehaviour
     }
     private void AttackPlayer()
     {
-        //Make sure enemy doesn't move
-        agent.SetDestination(transform.position);
-
+        //Make sure enemy doesn't move    
+            
+        
         transform.LookAt(player);
-
+        agent.speed = 6f;
         if (!alreadyAttacked)
         {
-
+            LungeAttack();
+            animator.SetTrigger("Attack");
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+        else
+        {
+            if (!agent.pathPending)
+            {
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    if (!agent.hasPath || agent.velocity.sqrMagnitude == 0f)
+                    {
+                        agent.SetDestination(transform.position);
+                    }
+                }
+            }
+            
+        }
     }
+    private void LungeAttack()
+    {
+        Vector3 dir = (player.position  - transform.position).normalized;
+        agent.SetDestination(player.position + dir * 10f);
+        agent.speed = 20f;
+    }
+
     private void ResetAttack()
     {
         alreadyAttacked = false;
+        animator.ResetTrigger("Attack");
+        animator.SetTrigger("Walk");
+        agent.speed = agent.speed / 5;
     }
     public void TakeDamage(int damage)
     {
