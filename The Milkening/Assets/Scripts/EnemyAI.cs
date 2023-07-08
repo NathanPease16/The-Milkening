@@ -86,7 +86,7 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 dir = (player.position - transform.position).normalized;
         agent.SetDestination(player.position + dir * 20f);
-        agent.speed = 50f;
+        agent.speed = 100f;
     }
 
     private void ResetAttack()
@@ -98,6 +98,9 @@ public class EnemyAI : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        animator.ResetTrigger("Walk");
+        animator.ResetTrigger("Attack");
+        animator.SetTrigger("Hurt");
         health -= damage;
 
         if (health <= 0) Invoke(nameof(DestroyEnemy), 0.5f);
