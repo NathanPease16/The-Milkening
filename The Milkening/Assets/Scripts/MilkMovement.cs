@@ -21,6 +21,9 @@ public class MilkMovement : MonoBehaviour
     private float nextActionTime = 0.0f;
     public float period = 7f;
 
+    private float nextSoundTime = 0.0f;
+    private float soundperiod = 1f;
+
 
     [Header("References")]
     private Rigidbody rb;
@@ -53,18 +56,17 @@ public class MilkMovement : MonoBehaviour
         bool isGrounded = IsGrounded();
 
         rb.angularVelocity = mainCam.rotation * new Vector3(vertical * speed, 0, -horizontal * speed);
-        if (horizontal > 0 || vertical > 0)
+        if (Time.time > nextSoundTime && (horizontal > 0 || vertical > 0))
         {
             SoundManager.instance.PlaySound(_MilkSlosh);
+            Debug.Log("asd");
+            nextSoundTime += soundperiod;
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded &&  Time.time > nextActionTime )
         {
-            
+
             SoundManager.instance.PlaySound(_MilkLunge);
-
             nextActionTime += period;
-
-
             Vector3 dir = mainCam.forward;
             dir.y += lungeHeightBias;
             rb.AddForce(dir * lungeForce);
