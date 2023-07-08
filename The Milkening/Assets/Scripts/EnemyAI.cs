@@ -6,6 +6,11 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyAI : MonoBehaviour
 {
+    [Header ("Sounds")]
+    public AudioClip _MilkHurt;
+    public AudioClip _MilkLunge;
+    public AudioClip _MilkDeath;
+
     public UnityEngine.AI.NavMeshAgent agent;
     public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
@@ -48,6 +53,7 @@ public class EnemyAI : MonoBehaviour
 
     public void Damage(float damage)
     {
+        SoundManager.instance.PlaySound(_MilkHurt);
         if (damageTime >= damageCoolDown)
         {
             health -= damage;
@@ -77,6 +83,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Die()
     {
+        SoundManager.instance.PlaySound(_MilkDeath);
         Instantiate(milkSplash, transform.position, Quaternion.identity);
         Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, floor);
 
@@ -130,7 +137,7 @@ public class EnemyAI : MonoBehaviour
         if (isGrounded && currentCoolDownTime >= lungeCoolDown)
         {
             dir.y += .5f;
-
+            SoundManager.instance.PlaySound(_MilkLunge);
             rb.AddForce(dir * 250f);
             isLunging = true;
             currentEscapeTime = 0;
