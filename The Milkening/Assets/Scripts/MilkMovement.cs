@@ -15,7 +15,7 @@ public class MilkMovement : MonoBehaviour
     private bool isLunging;
 
     private float nextActionTime = 0.0f;
-    public float period = 3f;
+    public float period = 7f;
 
 
     [Header("References")]
