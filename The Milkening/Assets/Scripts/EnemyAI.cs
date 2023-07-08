@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+
+[RequireComponent(typeof(Rigidbody))]
 public class EnemyAI : MonoBehaviour
 {
     public UnityEngine.AI.NavMeshAgent agent;
@@ -20,27 +22,46 @@ public class EnemyAI : MonoBehaviour
     public bool playerInSightRange, playerInAttackRange;
 
     Animator animator;
+    private Transform groundCheck;
+    private bool isLunging;
+    private Rigidbody rb;
+    private float escapeTime = .1f;
+    private float currentEscapeTime;
+    private float lungeCoolDown = 1.5f;
+    private float currentCoolDownTime;
 
     private void Awake()
     {
         animator = transform.GetChild(0).GetComponent<Animator>();
         player = GameObject.Find("Player").transform;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        groundCheck = transform.Find("Ground Check");
+        rb = GetComponent<Rigidbody>();
+        currentCoolDownTime = lungeCoolDown;
     }
 
     private void Update()
     {
+        agent.enabled = true;
+        currentCoolDownTime += Time.deltaTime;
+
         //Check for sight and attack range
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        bool isGrounded = IsGrounded();
+
+        if (!playerInSightRange && !playerInAttackRange && isGrounded && !isLunging) Patroling();
+        if (playerInSightRange && !playerInAttackRange && isGrounded && !isLunging) ChasePlayer();
+        if ((playerInAttackRange && playerInSightRange) || isLunging) AttackPlayer();
     }
 
     private void Patroling()
     {
+        agent.enabled = true;
+        animator.enabled = true;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -65,10 +86,37 @@ public class EnemyAI : MonoBehaviour
     }
     private void ChasePlayer()
     {
+        agent.enabled = true;
+        animator.enabled = true;
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
         agent.SetDestination(player.position);
     }
     private void AttackPlayer()
     {
+        bool isGrounded = IsGrounded();
+        Vector3 dir = (player.position - transform.position).normalized;
+        agent.enabled = false;
+            animator.enabled = false;
+
+        if (isGrounded && currentCoolDownTime >= lungeCoolDown)
+        {
+            dir.y += .5f;
+
+            rb.AddForce(dir * 250f);
+            isLunging = true;
+            currentEscapeTime = 0;
+            currentCoolDownTime = 0;
+        }
+
+        if (isLunging)
+        {
+            rb.angularVelocity = dir * 7;
+            if (isGrounded && currentEscapeTime >= escapeTime)
+                isLunging = false;
+            currentEscapeTime += Time.deltaTime;
+        }
+        /*
         //Make sure enemy doesn't move    
         if (ReachedDestinationOrGaveUp())
         {
@@ -83,6 +131,7 @@ public class EnemyAI : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+        */
 
     }
     private void LungeAttack()
@@ -135,5 +184,10 @@ public class EnemyAI : MonoBehaviour
         }
 
         return false;
+    }
+
+    private bool IsGrounded()
+    {
+        return Physics.CheckSphere(groundCheck.position, .15f, whatIsGround, QueryTriggerInteraction.Ignore);
     }
 }
