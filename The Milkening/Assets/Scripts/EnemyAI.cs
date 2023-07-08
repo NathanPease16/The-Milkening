@@ -86,7 +86,7 @@ public class EnemyAI : MonoBehaviour
     {
         Vector3 dir = (player.position - transform.position).normalized;
         agent.SetDestination(player.position + dir * 20f);
-        agent.speed = 50f;
+        agent.speed = 100f;
     }
 
     private void ResetAttack()
