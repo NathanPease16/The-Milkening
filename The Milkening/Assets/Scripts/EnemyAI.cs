@@ -15,9 +15,6 @@ public class EnemyAI : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
-
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
@@ -159,7 +156,6 @@ public class EnemyAI : MonoBehaviour
 
     private void ResetAttack()
     {
-        alreadyAttacked = false;
         animator.ResetTrigger("Attack");
         animator.SetTrigger("Walk");
         agent.speed = 6f;
