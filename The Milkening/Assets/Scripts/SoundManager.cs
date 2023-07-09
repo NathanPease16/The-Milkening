@@ -25,6 +25,7 @@ public class SoundManager : MonoBehaviour
         
         _effectsSource.PlayOneShot(clip);
     } 
+    
     public void PlayMusic(AudioClip clip)
     {
         _musicSource.clip = clip;
