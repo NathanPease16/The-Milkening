@@ -41,4 +41,19 @@ public class SoundManager : MonoBehaviour
     {
         _musicSource.loop = true;
     }
+
+    
+    public static IEnumerator FadeOut (float FadeTime) {
+        float startVolume = _musicSource.volume;
+ 
+        while (_musicSource.volume > 0) {
+            _musicSource.volume -= startVolume * Time.deltaTime / FadeTime;
+ 
+            yield return null;
+        }
+ 
+        _musicSource.Stop ();
+        _musicSource.volume = startVolume;
+    }
+ 
 }

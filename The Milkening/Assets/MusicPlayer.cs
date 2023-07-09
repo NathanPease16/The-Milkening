@@ -9,9 +9,14 @@ public class MusicPlayer : MonoBehaviour
     {
         if (other.tag == "Player")
         {
+            
             SoundManager.instance.Loop();
             SoundManager.instance.PlayMusic(song);
         }
             
+    }
+    void OnTriggerExit(Collider other)
+    {
+        StartCoroutine(FadeOut(3f));
     }
 }
