@@ -142,17 +142,17 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 8
-  health: 10
+  health: 6
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 3
-  sightRange: 7
-  attackRange: 4
+  sightRange: 4
+  attackRange: 3
   playerInSightRange: 0
   playerInAttackRange: 0
   isLunging: 0
   lungeDir: {x: 0, y: 0, z: 0}
-  damage: 8
-  damageCoolDown: 0.5
+  damage: 5
+  damageCoolDown: 0.7
   damageTime: 0
   milkSplash: {fileID: 5214742896816190321, guid: 711efae102bedd9468d0eaf8ee1f8e18,
     type: 3}
