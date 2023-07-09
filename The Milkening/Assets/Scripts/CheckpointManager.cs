@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class CheckpointManager : MonoBehaviour
 {
@@ -10,6 +9,9 @@ public class CheckpointManager : MonoBehaviour
 
     [Header("Singleton")]
     public static CheckpointManager instance;
+
+    [Header("References")]
+    private Animator checkpointUI;
 
     private void Awake()
     {
@@ -20,6 +22,7 @@ public class CheckpointManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        checkpointUI = GameObject.FindGameObjectWithTag("CheckptUI").GetComponent<Animator>();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -44,6 +47,18 @@ public class CheckpointManager : MonoBehaviour
     public void UpdateCheckpoint(int _priority)
     {
         if (_priority > priority)
+        {
             priority = _priority;
+            StartCoroutine(AnimateUI());
+        }
+    }
+
+    private IEnumerator AnimateUI()
+    {
+        checkpointUI.Play("CheckptIn");
+
+        yield return new WaitForSeconds(3f);
+
+        checkpointUI.Play("CheckptOut");
     }
 }

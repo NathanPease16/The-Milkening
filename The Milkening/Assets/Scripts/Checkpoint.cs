@@ -9,7 +9,7 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && CheckpointManager.instance != null)
             CheckpointManager.instance.UpdateCheckpoint(priority);
     }
 }

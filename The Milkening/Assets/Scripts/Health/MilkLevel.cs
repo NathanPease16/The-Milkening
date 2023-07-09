@@ -36,6 +36,7 @@ public class MilkLevel : MonoBehaviour
 
 
     GameObject death;
+    private GameObject blur;
 
     Animator animator;
     MilkMovement movement;
@@ -51,6 +52,9 @@ public class MilkLevel : MonoBehaviour
         movement = transform.GetChild(0).GetComponent<MilkMovement>();
 
         camMove = GetComponent<CameraMovement>();
+
+        blur = GameObject.FindGameObjectWithTag("Blur");
+        blur.SetActive(false);
     }
 
     private void Update()
@@ -94,9 +98,12 @@ public class MilkLevel : MonoBehaviour
     public void Death()
     {
         Died = true;
+        Time.timeScale = .5f;
         SoundManager.instance.PlaySound(_clip);
+        SoundManager.instance.Pitch(.5f);
         death.SetActive(true);
         movement.Launch();
+        blur.SetActive(true);
         StartCoroutine(Restart());
         camMove.enabled = false;
         movement.enabled = false;
@@ -105,8 +112,11 @@ public class MilkLevel : MonoBehaviour
 
     private IEnumerator Restart()
     {
-        yield return new WaitForSeconds(timeToRestart);
+        yield return new WaitForSeconds(timeToRestart*.5f);
 
+        SoundManager.instance.Pitch(1);
+        Time.timeScale = 1;
+        blur.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

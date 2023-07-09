@@ -31,6 +31,12 @@ public class SoundManager : MonoBehaviour
         _musicSource.clip = clip;
         _musicSource.Play();
     }
+
+    public void Pitch(float pitch)
+    {
+        _effectsSource.pitch = pitch;
+    }
+
     public void Loop()
     {
         _musicSource.loop = true;
