@@ -43,7 +43,7 @@ public class SoundManager : MonoBehaviour
     }
 
     
-    public static IEnumerator FadeIn (float FadeTime) {
+    public IEnumerator FadeIn (float FadeTime) {
         float startVolume = _musicSource.volume;
  
         while (_musicSource.volume < 100) {
@@ -56,7 +56,7 @@ public class SoundManager : MonoBehaviour
         _musicSource.volume = startVolume;
     }
 
-    public static IEnumerator FadeOut (float FadeTime) {
+    public IEnumerator FadeOut (float FadeTime) {
         float startVolume = _musicSource.volume;
  
         while (_musicSource.volume > 0) {
