@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MilkLevel : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class MilkLevel : MonoBehaviour
     [SerializeField] private float maxMilk;
     [SerializeField] private float currentMilk;
     [SerializeField] private float damageCoolDown;
+    [SerializeField] private float timeToRestart;
     private float damageTime;
 
     [Header("Spoilage")]
@@ -38,6 +39,7 @@ public class MilkLevel : MonoBehaviour
 
     Animator animator;
     MilkMovement movement;
+    private CameraMovement camMove;
     bool Died;
     private void Awake()
     {
@@ -47,14 +49,16 @@ public class MilkLevel : MonoBehaviour
         death.SetActive(false);
         animator = GetComponent<Animator>();
         movement = transform.GetChild(0).GetComponent<MilkMovement>();
-        animator.speed = 1;
 
+        camMove = GetComponent<CameraMovement>();
     }
 
     private void Update()
     {
         damageTime += Time.deltaTime;
         SpoilMilk();
+        if (currentMilk <= 0 && !Died)    
+            Death();
     }
 
     public void UpdateMilkContents(float amount)
@@ -65,9 +69,6 @@ public class MilkLevel : MonoBehaviour
             if (amount < 0)
                 damageTime = 0;
         }
-
-        if (currentMilk <= 0 && !Died)    
-            Death();
     }
 
     private void SpoilMilk()
@@ -93,12 +94,19 @@ public class MilkLevel : MonoBehaviour
     public void Death()
     {
         Died = true;
-        //Perform Death
         SoundManager.instance.PlaySound(_clip);
         death.SetActive(true);
-        animator.speed = 1;
-        animator.SetTrigger("Death");
+        movement.Launch();
+        StartCoroutine(Restart());
+        camMove.enabled = false;
         movement.enabled = false;
 
+    }
+
+    private IEnumerator Restart()
+    {
+        yield return new WaitForSeconds(timeToRestart);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

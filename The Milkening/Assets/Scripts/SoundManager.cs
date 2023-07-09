@@ -20,8 +20,12 @@ public class SoundManager : MonoBehaviour
     }
     public void PlaySound(AudioClip clip)
     {
+        if (clip == null)
+            return;
+        
         _effectsSource.PlayOneShot(clip);
     } 
+    
     public void PlayMusic(AudioClip clip)
     {
         _musicSource.clip = clip;

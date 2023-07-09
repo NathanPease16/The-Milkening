@@ -60,7 +60,6 @@ public class MilkMovement : MonoBehaviour
         if (Time.time > nextSoundTime && (horizontal > 0 || vertical > 0))
         {
             SoundManager.instance.PlaySound(_MilkSlosh);
-            Debug.Log("asd");
             nextSoundTime += soundperiod;
         }
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded &&  Time.time > nextActionTime )
@@ -87,6 +86,16 @@ public class MilkMovement : MonoBehaviour
 
         transform.parent.position = transform.position;
         transform.localPosition = Vector3.zero;
+    }
+
+    public void Launch()
+    {
+        Vector3 dir = -mainCam.forward;
+        dir.y = Mathf.Abs(dir.y);
+        dir.y += lungeHeightBias;
+
+        rb.velocity = dir;
+        rb.angularVelocity = dir * lungeAngularVelocity;
     }
 
     private bool IsGrounded()

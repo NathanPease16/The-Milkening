@@ -5,7 +5,7 @@ using UnityEngine;
 public class MilkPuddle : MonoBehaviour
 {
     [Header ("Sounds")]
-    public AudioClip _clip;
+    public AudioSource _clip;
 
     [Header("Attributes")]
     [SerializeField] private float healAmount;
@@ -36,7 +36,7 @@ public class MilkPuddle : MonoBehaviour
     {
         if (other.CompareTag("Player") && milk.CurrentMilk < milk.MaxMilk && anim.speed != 1)
         {
-            SoundManager.instance.PlaySound(_clip);
+            _clip.Play();
             anim.speed = 1;
             StartCoroutine(DrinkMilk());
         }
@@ -46,6 +46,7 @@ public class MilkPuddle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            _clip.Pause();
             anim.speed = 0;
             StopAllCoroutines();
         }
