@@ -42,6 +42,8 @@ public class CheckpointManager : MonoBehaviour
                 }
             }
         }
+
+        instance = this;
     }
 
     public void UpdateCheckpoint(int _priority)
