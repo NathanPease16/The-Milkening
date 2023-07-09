@@ -160,7 +160,7 @@ MonoBehaviour:
     type: 3}
   floor:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1143
 --- !u!195 &658328554378482744
 NavMeshAgent:
   m_ObjectHideFlags: 0
