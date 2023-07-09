@@ -9,6 +9,7 @@ public class Credits : MonoBehaviour
     void Start()
     {
         SoundManager.instance.PlayMusic(song);
+        Application.Quit();
     }
 
     
