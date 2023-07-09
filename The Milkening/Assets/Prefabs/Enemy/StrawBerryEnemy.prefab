@@ -61,9 +61,9 @@ MonoBehaviour:
     m_Bits: 8
   health: 10
   walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 3
-  sightRange: 7
-  attackRange: 4
+  walkPointRange: 5
+  sightRange: 4
+  attackRange: 2
   playerInSightRange: 0
   playerInAttackRange: 0
   isLunging: 0
