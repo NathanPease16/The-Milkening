@@ -12,14 +12,10 @@ public class HeatZone : MonoBehaviour
     [Header ("Sounds")]
     public AudioClip _clip;
 
-    Volume v;
-    Bloom b;
 
     private void Awake()
     {
         milk = GameObject.FindGameObjectWithTag("Player").GetComponent<MilkLevel>();
-        v = GetComponent<Volume>();
-        v.profile.TryGet(out b);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,7 +23,6 @@ public class HeatZone : MonoBehaviour
         if (other.CompareTag("Player"))
             {
                 milk.CurrentTemperature = temperature;
-                b.intensity.value = Mathf.Clamp(Mathf.FloorToInt(20f * (temperature/100)), 0, 20);
                 SoundManager.instance.PlaySound(_clip);
             }
 
