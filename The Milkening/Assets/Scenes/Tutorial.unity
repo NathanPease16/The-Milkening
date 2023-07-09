@@ -20644,7 +20644,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7b4fca9d6dc9a49b5066d708c94e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: f8e11e595d13b6843bd49a3fb8c300a5, type: 3}
   priority: 2
 --- !u!65 &320122670
 BoxCollider:
@@ -31051,6 +31051,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 15.754
       objectReference: {fileID: 0}
+    - target: {fileID: 1986430867325410640, guid: d17da854c5ead9440abe0a266c2df4ed,
+        type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: f8e11e595d13b6843bd49a3fb8c300a5, type: 3}
     - target: {fileID: 2239982982639777930, guid: d17da854c5ead9440abe0a266c2df4ed,
         type: 3}
       propertyPath: m_Size.x
@@ -54276,7 +54281,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7b4fca9d6dc9a49b5066d708c94e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: f8e11e595d13b6843bd49a3fb8c300a5, type: 3}
   priority: 1
 --- !u!65 &845146584
 BoxCollider:
@@ -106404,7 +106409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7b4fca9d6dc9a49b5066d708c94e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: f8e11e595d13b6843bd49a3fb8c300a5, type: 3}
   priority: 3
 --- !u!65 &1727736627
 BoxCollider:
