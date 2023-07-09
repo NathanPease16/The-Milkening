@@ -18,7 +18,7 @@ public class HeatZone : MonoBehaviour
         milk = GameObject.FindGameObjectWithTag("Player").GetComponent<MilkLevel>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
             {
