@@ -12,6 +12,6 @@ public class Quip : MonoBehaviour
     private void Awake()
     {
         text = GetComponent<TextMeshProUGUI>();
-        text.text = "\"" + quips[Random.Range(0, quips.Length - 1)] + "\"";
+        text.text = "\"" + quips[Random.Range(0, quips.Length)] + "\"";
     }
 }
