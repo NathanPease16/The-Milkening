@@ -9,7 +9,7 @@ public class MusicPlayer : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            
+            StartCoroutine(FadeIn(3f));
             SoundManager.instance.Loop();
             SoundManager.instance.PlayMusic(song);
         }
