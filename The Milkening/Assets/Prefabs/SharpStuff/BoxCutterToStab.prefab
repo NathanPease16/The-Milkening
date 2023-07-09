@@ -120,4 +120,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _clip: {fileID: 8300000, guid: 773845b662b77bf4dbc15f5d38434acf, type: 3}
-  damage: 10
+  damage: 100
