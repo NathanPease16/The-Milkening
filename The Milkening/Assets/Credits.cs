@@ -8,7 +8,13 @@ public class Credits : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(Poop());
+        
+    }
+    IEnumerator Poop()
+    {
         SoundManager.instance.PlayMusic(song);
+        yield return new WaitForSeconds(5f);
         Application.Quit();
     }
 
