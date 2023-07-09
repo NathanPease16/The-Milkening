@@ -62,8 +62,8 @@ MonoBehaviour:
   health: 10
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 3
-  sightRange: 7
-  attackRange: 4
+  sightRange: 4
+  attackRange: 3
   playerInSightRange: 0
   playerInAttackRange: 0
   isLunging: 0
