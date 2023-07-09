@@ -7,11 +7,12 @@ public class EnemyClearDetect : MonoBehaviour
     [SerializeField] private List<GameObject> enemies;
     [SerializeField] private List<GameObject> blocks;
     private bool activated;
-/*
+
     void Awake()
     {
         foreach(GameObject block in blocks) {
             block.GetComponent<Rigidbody>().isKinematic = true;
+            block.GetComponent<Rigidbody>().detectCollisions = false;
         }
         activated = false;
     }
@@ -19,14 +20,14 @@ public class EnemyClearDetect : MonoBehaviour
     void Update()
     {
         enemies.RemoveAll(s => s == null);
-        Debug.Log(enemies.Count);
 
         if(!activated && enemies.Count == 0) {
             activated = true;
             foreach(GameObject block in blocks) {
                 block.GetComponent<Rigidbody>().isKinematic = false;
-                block.GetComponent<Rigidbody>().AddForce(Vector3.up);
+                block.GetComponent<Rigidbody>().detectCollisions = true;
+                block.GetComponent<Rigidbody>().AddForce(Random.onUnitSphere * 3);
             }
         }
-    }*/
+    }
 }
