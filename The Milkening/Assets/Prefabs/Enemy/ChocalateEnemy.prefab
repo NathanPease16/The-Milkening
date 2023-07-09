@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b431e81bda3af244299346c9b1bc7018, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _MilkHurt: {fileID: 8300000, guid: 773845b662b77bf4dbc15f5d38434acf, type: 3}
+  _MilkLunge: {fileID: 8300000, guid: a6fd632c358e3004da7c807b7e91134e, type: 3}
+  _MilkDeath: {fileID: 8300000, guid: ed9afa5ebca889a429dcfd7cfccc1c95, type: 3}
   agent: {fileID: 1532684477748681715}
   player: {fileID: 0}
   whatIsGround:
@@ -59,7 +62,6 @@ MonoBehaviour:
   health: 10
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 10
-  timeBetweenAttacks: 2
   sightRange: 7
   attackRange: 4
   playerInSightRange: 0

@@ -66,19 +66,23 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        agent.enabled = true;
-        currentCoolDownTime += Time.deltaTime;
-        damageTime += Time.deltaTime;
+        if (agent != null)
+        {
+            agent.enabled = true;
+            currentCoolDownTime += Time.deltaTime;
+            damageTime += Time.deltaTime;
 
-        //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            //Check for sight and attack range
+            playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        bool isGrounded = IsGrounded();
+            bool isGrounded = IsGrounded();
 
-        if (!playerInSightRange && !playerInAttackRange && isGrounded && !isLunging) Patroling();
-        if (playerInSightRange && !playerInAttackRange && isGrounded && !isLunging) ChasePlayer();
-        if ((playerInAttackRange && playerInSightRange) || isLunging) AttackPlayer();
+            if (!playerInSightRange && !playerInAttackRange && isGrounded && !isLunging) Patroling();
+            if (playerInSightRange && !playerInAttackRange && isGrounded && !isLunging) ChasePlayer();
+            if ((playerInAttackRange && playerInSightRange) || isLunging) AttackPlayer();
+        }
+        
     }
 
     private void Die()

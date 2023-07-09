@@ -249,7 +249,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   isLunging: 0
-  period: 1
+  period: 2
   lungeDir: {x: 0, y: 0, z: 0}
 --- !u!1 &4659189430518869340
 GameObject:
