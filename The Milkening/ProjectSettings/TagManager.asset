@@ -8,6 +8,10 @@ TagManager:
   - Enemy
   - Death
   - Checkpoints
+  - CheckptUI
+  - Blur
+  - PauseMenu
+  - Button
   layers:
   - Default
   - TransparentFX

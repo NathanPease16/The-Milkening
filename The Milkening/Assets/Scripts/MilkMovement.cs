@@ -11,15 +11,14 @@ public class MilkMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lungeAngularVelocity;
     [SerializeField] private float lungeForce;
+    [SerializeField] private float lungeCoolDown;
     [SerializeField] private float lungeHeightBias;
     [SerializeField] private float lungeEscapeTime;
     [SerializeField] private float groundCheckRadius;
     [SerializeField] private LayerMask groundCheckMask;
     private float currentEscapeTime;
+    private float currentLungeTime;
     public bool isLunging;
-
-    private float nextActionTime = 0.0f;
-    public float period = 7f;
 
     private float nextSoundTime = 0.0f;
     private float soundperiod = 1f;
@@ -40,10 +39,12 @@ public class MilkMovement : MonoBehaviour
         groundCheck = transform.parent.Find("Ground Check");
 
         rb.maxAngularVelocity = speed;
+        currentLungeTime = lungeCoolDown;
     }
 
     private void Update()
     {
+        currentLungeTime += Time.deltaTime;
         MoveMilk();
     }
 
@@ -62,15 +63,15 @@ public class MilkMovement : MonoBehaviour
             SoundManager.instance.PlaySound(_MilkSlosh);
             nextSoundTime += soundperiod;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded &&  Time.time > nextActionTime )
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && currentLungeTime >= lungeCoolDown)
         {
 
             SoundManager.instance.PlaySound(_MilkLunge);
-            nextActionTime += period;
             Vector3 dir = mainCam.forward;
             dir.y += lungeHeightBias;
             rb.AddForce(dir * lungeForce);
             isLunging = true;
+            currentLungeTime = 0;
             currentEscapeTime = 0;
 
             lungeDir = dir;

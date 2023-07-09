@@ -22,7 +22,15 @@ public class HoverSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         milk = mask.Find("Image").GetComponent<RectTransform>();
 
         startHeight = mask.rect.height;
+    }
 
+    private void Start()
+    {
+        Reset();
+    }
+
+    public void Reset()
+    {
         StartCoroutine(Fill(-1, 0.00000001f));
     }
 
@@ -54,8 +62,6 @@ public class HoverSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         {
             for (float t = 1; t >= 0; t -= Time.deltaTime/a)
             {
-                //mask.localScale = new Vector3(1, t, 1);
-                //milk.localScale = t == 0 ? Vector3.zero : new Vector3(1, 1f/t, 1);
                 mask.sizeDelta = new Vector2(mask.rect.width, startHeight * t);
                 yield return null;
             }
