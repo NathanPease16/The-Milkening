@@ -238,7 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _MilkSlosh: {fileID: 8300000, guid: 133eb7f325ab7ad4a811f49e849b190b, type: 3}
-  _MilkLunge: {fileID: 8300000, guid: a6fd632c358e3004da7c807b7e91134e, type: 3}
+  _MilkLunge: {fileID: 8300000, guid: 9943a973bcf91254685b14344d7595bb, type: 3}
   speed: 10
   lungeAngularVelocity: 7
   lungeForce: 400
