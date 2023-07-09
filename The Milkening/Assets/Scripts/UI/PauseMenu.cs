@@ -34,13 +34,17 @@ public class PauseMenu : MonoBehaviour
         
         if (paused)
         {
+            Time.timeScale = 0;
             foreach(GameObject button in buttons)
                 button.GetComponent<HoverSelect>().Reset();
         }
+        else
+            Time.timeScale = 1;
     }
 
     public void MainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 

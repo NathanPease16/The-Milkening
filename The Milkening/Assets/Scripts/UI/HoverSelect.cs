@@ -32,6 +32,7 @@ public class HoverSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public void Reset()
     {
         StartCoroutine(Fill(-1, 0.00000001f));
+        selection.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
