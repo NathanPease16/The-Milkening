@@ -241,7 +241,7 @@ MonoBehaviour:
   _MilkLunge: {fileID: 8300000, guid: a6fd632c358e3004da7c807b7e91134e, type: 3}
   speed: 10
   lungeAngularVelocity: 7
-  lungeForce: 400
+  lungeForce: 200
   lungeCoolDown: 1.3
   lungeHeightBias: 0.5
   lungeEscapeTime: 0.1
